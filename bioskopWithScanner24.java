@@ -23,14 +23,28 @@ public class bioskopWithScanner24 {
                 while (true) {
                     System.out.print("Masukkan nama: ");
                     nama = sc.nextLine();
-                    System.out.print("Masukkan baris: ");
-                    baris = sc.nextInt();
-                    System.out.print("Masukkan kolom: ");
-                    kolom = sc.nextInt();
+                    while (true){
+                        System.out.print("Masukkan baris: ");
+                        baris = sc.nextInt();
+                        if (baris < 1 || baris > 4) {
+                            System.out.println("Baris Tidak valid, Masukkan Baris Antara 1-4");
+                           continue;
+                        } 
+                        System.out.print("Masukkan kolom: ");
+                        kolom = sc.nextInt();
+                        if (kolom < 1 || kolom > 2){
+                            System.out.println("Kolom Tidak valid, Masukkan kolom Antara 1-2");
+                            continue;
+                        }
+    
+                        if (penonton[baris-1][kolom-1] != null) {
+                            System.out.println("Kursi pada baris " + baris + " dan kolom " + kolom + " sudah terisi! Silahkan pilih kursi lain.");
+                        } else {
+                            penonton[baris-1][kolom-1] = nama;
+                            break;
+                        }
+                    }   
                     sc.nextLine();
-        
-                    penonton[baris-1][kolom-1] = nama;
-        
                     System.out.print("Input penonton lainnya? (y/n): ");
                     next = sc.nextLine();
         
@@ -43,7 +57,11 @@ public class bioskopWithScanner24 {
                 System.out.println("--- Data Penonton ---");
                 for (int b = 0; b < penonton.length; b++){
                 for (int k = 0; k < penonton[b].length; k++){
-                System.out.println("Baris ke-" + (b+1) + ", Kolom ke-" + (k+1) + ": " + penonton[b][k]);
+                if (penonton[b][k] != null) {
+                    System.out.println("Baris ke-" + (b+1) + ", Kolom ke-" + (k+1) + ": " + penonton[b][k]);
+                } else {
+                    System.out.println("Baris ke-" + (b + 1) + ", Kolom ke-" + (k + 1) + ": ***");
+                }
                 }
               }
             } else if (pilihmenu == 3){
